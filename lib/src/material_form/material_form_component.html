@@ -1,0 +1,28 @@
+<material-radio-group [(ngModel)]="role">
+  <div *ngFor="let r of roles">
+    <material-radio [value]="r['value']"
+    >{{r['label']}}</material-radio>
+  </div>
+</material-radio-group>
+
+<div>
+  <material-input
+    label="First name"
+    [required]="true"
+    floatingLabel
+    [(ngModel)]="firstName"
+  ></material-input>
+</div>
+
+<div>
+  <material-input
+    label="Last name"
+    [required]="true"
+    floatingLabel
+    [(ngModel)]="lastName"
+  ></material-input>
+</div>
+
+<p>
+  <material-checkbox [(ngModel)]="accept">Test</material-checkbox>
+</p>

@@ -1,0 +1,7 @@
+.blue {
+  color: #CC0000;
+}
+
+:host {
+    /* This is equivalent of the 'body' selector of a page. */
+}

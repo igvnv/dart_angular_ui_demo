@@ -1,0 +1,47 @@
+:host {
+  position: relative;
+}
+
+label {
+  color: #9f9f9f;
+  display: block;
+  font-size: 15px;
+  left: 12px;
+  letter-spacing: 1.2px;
+  position: absolute;
+  top: -34px;
+  transition: top .2s, font-size .2s;
+  white-space: nowrap;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid #e7e7e7;
+  display: block;
+  font-size: 15px;
+  height: 40px;
+  letter-spacing: 1.2px;
+  text-indent: 10px;
+  transition: border-bottom-color .2s;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input:focus + label,
+input:valid + label {
+  font-size: 10px;
+  top: -46px;
+}
+
+input.error {
+  border-color: #cc0000;
+}
+
+span.error {
+  color: #cc0000;
+  font-size: 10px;
+  margin: 5px 10px;
+}
