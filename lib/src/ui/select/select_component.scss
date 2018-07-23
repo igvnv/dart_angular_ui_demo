@@ -1,0 +1,122 @@
+@import "../config";
+
+:host {
+  position: relative;
+  display: block;
+}
+
+.select {
+  cursor: pointer;
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 2px;
+    background: $color-main;
+    right: 15px;
+    top: 50%;
+    margin-top: -1px;
+    transform: rotate(45deg);
+    transition: transform .2s;
+  }
+  &:after {
+    right: 12px;
+    transform: rotate(-45deg);
+  }
+
+  &.open {
+    &:before {
+      transform: rotate(-45deg);
+    }
+    &:after {
+      transform: rotate(45deg);
+    }
+
+    ul {
+      display: block;
+    }
+  }
+
+  &.disabled {
+    background-color: $input-disabled-background;
+    border-bottom-color: $input-disabled-border-color;
+    color: $input-disabled-color;
+
+    .currentValue {
+      color: $input-disabled-color;
+    }
+  }
+}
+
+.label {
+  color: $input-label-color;
+  cursor: pointer;
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  left: 11px;
+  letter-spacing: 1.5px;
+  position: absolute;
+  text-transform: uppercase;
+  top: 14px;
+  transition: left .2s, top .2s, font-size .2s;
+  white-space: nowrap;
+
+  &.raised {
+    font-size: 11px;
+    left: 12px;
+    top: -3px;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.currentValue {
+  border: none;
+  border-bottom: 1px solid $input-border;
+  color: $color-main;
+  display: block;
+  font-family: $font-general;
+  font-size: 15px;
+  height: 44px;
+  line-height: 46px;
+  letter-spacing: 1.5px;
+  text-indent: 11px;
+  text-transform: uppercase;
+  transition: border-bottom-color .2s;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    background-color: #f5f5f5;
+    border-bottom-color: #e7e7e7;
+    color: #cecece;
+  }
+}
+
+ul {
+  border: 1px solid $input-border;
+  background: #f7f7f7;
+  display: none;
+  margin-top: -1px;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+
+  li {
+    padding: 11px 17px;
+    cursor: pointer;
+    font-size: 15px;
+    text-transform: uppercase;
+
+    &:hover, &.active {
+      background: #ebebeb;
+    }
+  }
+}

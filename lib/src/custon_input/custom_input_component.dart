@@ -6,6 +6,10 @@ import 'package:angular_forms/angular_forms.dart';
 
 import '../services/uid_service.dart';
 
+//(change)="onChange(inputEl.value)"
+//(input)="onChange(inputEl.value)"
+//(blur)="onBlur()"
+
 @Component(
     selector: 'custom-input',
     styleUrls: ['custom_input_component.css'],
@@ -15,9 +19,6 @@ import '../services/uid_service.dart';
         [id]="inputId" 
         type="text" 
         [value]="inputValue"
-        (change)="onChange(inputEl.value)"
-        (input)="onChange(inputEl.value)"
-        (blur)="onBlur()"
         [class.error]="!isValid"
         required
       />

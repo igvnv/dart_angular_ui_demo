@@ -1,0 +1,48 @@
+@import "../config";
+
+:host {
+  display: flex;
+  align-items: center;
+}
+
+button {
+  background: #222222;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1.1px;
+  padding: 9px 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color .2s;
+  min-width: 204px;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.large {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    padding: 18px 10px 17px;
+    min-width: 269px;
+  }
+
+  &:hover {
+    background-color: $color-button-hover;
+  }
+
+  &:disabled {
+    background-color: $color-button-disabled;
+  }
+}
+
+.serviceMessage {
+  margin: 0 0 0 18px;
+  text-align: left;
+}

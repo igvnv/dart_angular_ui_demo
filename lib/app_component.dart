@@ -1,20 +1,42 @@
-import 'package:angular/angular.dart';
+//import 'dart:async';
 
-import 'src/custom_form/custom_form_component.dart';
-import 'src/material_form/material_form_component.dart';
+import 'package:angular/angular.dart';
+import 'package:angular_forms/angular_forms.dart';
 
 import 'src/services/uid_service.dart';
-
-// AngularDart info: https://webdev.dartlang.org/angular
-// Components info: https://webdev.dartlang.org/components
+import 'src/ui/ui.dart';
 
 @Component(
   selector: 'my-app',
   styleUrls: ['app_component.css'],
   templateUrl: 'app_component.html',
-  directives: [CustomFormComponent, MaterialFormComponent],
+  directives: [
+    coreDirectives,
+    formDirectives,
+    uiDirectives,
+  ],
   providers: [ClassProvider(UidService)]
 )
-class AppComponent {
-  // Nothing here yet. All logic is in TodoListComponent.
+class AppComponent implements OnInit {
+  bool checkboxValue = true;
+  String radioValue = 'one';
+  String inputValue = 'test';
+
+  Map<String, String> selectOptions = {
+    'one': 'First Option',
+    'two': 'Second Option',
+    'three': 'Third Option'
+  };
+  String selectValue = '';
+  DateTime timeValue = new DateTime(2018, 06, 12, 15, 45);
+//  DateTime timeValue = new DateTime.now();
+//  DateTime timeValue;
+
+  bool disabled = false;
+
+  RangeValue range;
+
+  void ngOnInit() {
+//    Future.delayed(const Duration(seconds: 3), () => disabled = true);
+  }
 }

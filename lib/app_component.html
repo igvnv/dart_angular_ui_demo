@@ -1,15 +1,81 @@
-<div style="display: flex;align-items: flex-start">
-  <div style="width: 33.3%">
-    <h1>Material form</h1>
-    <material-form></material-form>
-  </div>
-  <div style="width: 33.3%">
-    <h1>Custom form</h1>
-    <custom-form></custom-form>
-  </div>
-  <div style="width: 33.3%">
-    <h1>Example</h1>
-    <img src="imgs/example-1.png" /><br />
-    <img src="imgs/example-2.png" />
-  </div>
+<div style="margin: 20px 100px">
+  <h1>Components Preview</h1>
+
+  <p>
+    <ui-date [(ngModel)]="timeValue">Service Date</ui-date>
+  </p>
+
+  <p>
+    <ui-range [(ngModel)]="range" [minValue]="-100" [maxValue]="100" [step]="5"></ui-range>
+  </p>
+
+  <p>
+    <ui-button>Small Button</ui-button>
+  </p>
+  <p>
+    <ui-button [large]="true" (click)="disabled = !disabled">Large Button</ui-button>
+  </p>
+
+  <p>
+    <ui-checkbox [(ngModel)]="checkboxValue">Custom checkbox!</ui-checkbox>
+    <ui-checkbox [(ngModel)]="checkboxValue" [disabled]="true">Custom checkbox!</ui-checkbox>
+  </p>
+
+
+  <p>checkboxValue: {{checkboxValue}}</p>
+
+  <ul>
+    <li>
+      <ui-radio [(ngModel)]="radioValue" [value]="'one'">Radio 1</ui-radio>
+    </li>
+    <li>
+      <ui-radio [(ngModel)]="radioValue" [value]="'two'" [disabled]="true">Radio 2</ui-radio>
+    </li>
+    <li>
+      <ui-radio [(ngModel)]="radioValue" [value]="'three'">Radio 3</ui-radio>
+    </li>
+  </ul>
+
+  <p>radioValue: {{radioValue}}</p>
+
+
+  <p>
+    <ui-input [(ngModel)]="inputValue">Text Input</ui-input>
+  </p>
+  <p>
+    <ui-input [(ngModel)]="inputValue" [disabled]="true" [required]="true">Text Input</ui-input>
+  </p>
+
+  <p>inputValue: {{inputValue}}</p>
+
+
+  <p>
+    <ui-select [(ngModel)]="selectValue" [options]="selectOptions">Select Label</ui-select>
+  </p>
+
+  <p>
+    <ui-select [(ngModel)]="selectValue" [options]="selectOptions" [disabled]="true">Select Label</ui-select>
+  </p>
+
+  <p>selectValue: {{selectValue}}</p>
+
+  <p>
+    <ui-time [(ngModel)]="timeValue">Service Time</ui-time>
+  </p>
+
+  <p>
+    <ui-time [(ngModel)]="timeValue" [disabled]="true">Service Time</ui-time>
+  </p>
+
+  <p>timeValue: {{timeValue}}</p>
+
+  <p>
+    <ui-date [(ngModel)]="timeValue">Service Date</ui-date>
+  </p>
+
+  <p>
+    <ui-date [(ngModel)]="timeValue" [disabled]="true">Service Date</ui-date>
+  </p>
+
+  <p>timeValue: {{timeValue}}</p>
 </div>

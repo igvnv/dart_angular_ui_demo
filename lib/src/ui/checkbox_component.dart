@@ -1,28 +1,22 @@
-import 'dart:async';
-import 'dart:html';
-
-import 'package:angular/angular.dart';
-import 'package:angular_forms/angular_forms.dart';
-
-import '../services/uid_service.dart';
+part of ui;
 
 @Component(
-  selector: 'custom-checkbox',
-  styleUrls: ['custom_checkbox_component.css'],
+  selector: 'ui-checkbox',
+  styleUrls: ['checkbox_component.css'],
   template: '''
   <input 
     type="checkbox"
     [id]="checkboxId" 
-    (change)="toggle()"
     [checked]="checkboxValue"
+    [disabled]="disabled"
+    (change)="toggle()"
   >
   <label [attr.for]="checkboxId">
     <ng-content></ng-content>
   </label>
-  ''',
-  directives: [coreDirectives, formDirectives]
+  '''
 )
-class CustomCheckboxComponent implements ControlValueAccessor<bool>, OnInit {
+class CheckboxComponent implements ControlValueAccessor<bool>, OnInit {
   bool checkboxValue;
 
   final UidService _uid;
@@ -30,7 +24,7 @@ class CustomCheckboxComponent implements ControlValueAccessor<bool>, OnInit {
   @Input()
   bool disabled;
 
-  CustomCheckboxComponent(NgControl control, this._uid) {
+  CheckboxComponent(NgControl control, this._uid) {
     control.valueAccessor = this;
   }
 
@@ -42,17 +36,17 @@ class CustomCheckboxComponent implements ControlValueAccessor<bool>, OnInit {
     }
   }
 
+  void toggle () {
+    checkboxValue = !checkboxValue;
+    _onChecked.add(checkboxValue);
+  }
+
   @Output('checkedChange')
   Stream get onChecked => _onChecked.stream;
   final _onChecked = new StreamController.broadcast();
 
   void onChange (bool value) {
     checkboxValue = value;
-    _onChecked.add(checkboxValue);
-  }
-
-  void toggle () {
-    checkboxValue = !checkboxValue;
     _onChecked.add(checkboxValue);
   }
 

@@ -1,0 +1,218 @@
+@import "../config";
+
+:host {
+  display: block;
+  position: relative;
+  width: 271px;
+}
+
+.input {
+  background: #f7f7f7;
+  cursor: pointer;
+  height: 50px;
+
+  &.disabled {
+    cursor: not-allowed;
+
+    .currentValue {
+      background-color: $input-disabled-background;
+      border-bottom-color: $input-disabled-border-color;
+      color: $input-disabled-color;
+    }
+  }
+}
+
+.label {
+  color: $input-label-color;
+  display: block;
+  font-size: 15px;
+  font-weight: 400;
+  left: 16px;
+  letter-spacing: 1.5px;
+  position: absolute;
+  text-transform: uppercase;
+  top: 17px;
+  transition: left .2s, top .2s, font-size .2s;
+  white-space: nowrap;
+
+  &.raised {
+    font-size: 11px;
+    top: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.currentValue {
+  border: none;
+  color: $color-main;
+  display: block;
+  font-family: $font-general;
+  font-size: 15px;
+  height: 50px;
+  line-height: 54px;
+  letter-spacing: 1.5px;
+  text-indent: 16px;
+  text-transform: uppercase;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:after {
+    background-image: url('imgs/ico-date-input.png');
+    content: '';
+    height: 12px;
+    position: absolute;
+    right: 14px;
+    top: 20px;
+    width: 12px;
+  }
+}
+
+.dateSelector {
+  align-items: flex-end;
+  background: #ffffff;
+  border: 1px solid #e7e7e7;
+  display: block;
+  justify-content: space-between;
+  left: 50%;
+  margin-bottom: 15px;
+  padding: 5px 23px 16px 27px;
+  position: absolute;
+  top: 50px;
+  transform: translateX(-50%);
+  width: 339px;
+  z-index: 100;
+
+  .changeMonth {
+    font-size: 17px;
+    font-weight: 300;
+    padding: 25px 0 14px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+
+    span {
+      cursor: pointer;
+    }
+
+    .previous, .next {
+      height: 100%;
+      left: 9px;
+      position: absolute;
+      top: 34px;
+      width: 20px;
+
+      &:before, &:after {
+        background: $color-main;
+        content: '';
+        height: 2px;
+        left: 0;
+        margin-top: -3px;
+        position: absolute;
+        top: 0;
+        transform: rotate(-45deg);
+        transition: transform .2s;
+        width: 8px;
+      }
+      &:after {
+        margin-top: 2px;
+        transform: rotate(45deg);
+      }
+    }
+
+    .next {
+      left: auto;
+      right: 9px;
+      top: -24px;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.month {
+  ul {
+    font-size: 15px;
+    overflow: hidden;
+
+    &.dayNames {
+      color: #b4b4b4;
+      font-size: 11px;
+      font-weight: 300;
+      margin: 7px 0 -3px;
+      text-transform: uppercase;
+
+      li {
+        height: 20px;
+        line-height: 20px;
+      }
+
+    }
+  }
+
+  li {
+    display: inline-block;
+    float: left;
+    height: 41px;
+    line-height: 41px;
+    margin: 4px 0 3px;
+    text-align: center;
+    width: 41px;
+
+    &.otherMonth {
+      color: #bfbfbf;
+    }
+
+    &.displayedMonth {
+      cursor: pointer;
+    }
+  }
+
+}
+
+.currentDate {
+  background: #eaeaea;
+  border-radius: 50%;
+}
+
+.selectedDate {
+  background: #222222;
+  border-radius: 50%;
+  color: white;
+}
+
+.monthsList {
+  font-size: 11px;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 20px 0 4px;
+  overflow: hidden;
+
+  li {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    height: 64px;
+    line-height: 64px;
+    margin: 0 3px 9px 4px;
+    width: 64px;
+  }
+}
+
+.yearsList {
+  font-size: 12px;
+  text-align: center;
+  overflow: hidden;
+
+  li {
+    cursor: pointer;
+    width: 57px;
+    height: 57px;
+    line-height: 57px;
+    float: left;
+  }
+}

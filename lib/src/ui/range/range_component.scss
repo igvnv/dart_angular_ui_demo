@@ -1,0 +1,65 @@
+@import "../config";
+
+:host {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  display: block;
+}
+
+.rangeAll {
+  width: 100%;
+  height: 3px;
+  background: #e9e9e9;
+  z-index: 1;
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+}
+
+.rangeSelected {
+  position: absolute;
+  z-index: 2;
+  background: #3b3b3b;
+  bottom: 6px;
+  height: 3px;
+}
+
+.min, .max {
+  color: #bbbbbb;
+  font-size: 12px;
+  position: absolute;
+  left: 0;
+  bottom: 10px;
+
+  &.max {
+    left: auto;
+    right: 0;
+  }
+}
+
+.selector {
+  background: #3b3b3b;
+  border-radius: 50%;
+  bottom: 0;
+  color: #3b3b3b;
+  cursor: pointer;
+  font-size: 14px;
+  height: 16px;
+  position: absolute;
+  width: 16px;
+  z-index: 3;
+  margin-left: -8px;
+
+  &.to {
+    z-index: 4;
+  }
+
+  span {
+    bottom: 21px;
+    left: 50%;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+  }
+}

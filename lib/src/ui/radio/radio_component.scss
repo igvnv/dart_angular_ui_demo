@@ -1,18 +1,27 @@
-$text-color: #3b3b3b;
+@import "../config";
 
-input[type=checkbox] {
+:host {
+  display: block;
+  position: relative;
+  min-height: 25px;
+  margin-top: 8px;
+}
+
+input[type=radio] {
   position: absolute;
   opacity: 0;
 
   & + label {
     position: relative;
     cursor: pointer;
-    padding: 0 0 0 40px;
-    color: $text-color;
-    margin-top: 25px;
-    font-weight: normal;
+    margin: 0;
+    padding: 2px 0 0;
+    color: $color-main;
+    font-weight: 300;
+    font-size: 13px;
     display: block;
-    text-indent: -40px;
+    text-transform: uppercase;
+    letter-spacing: 0;
 
     small {
       text-indent: 0;
@@ -24,14 +33,15 @@ input[type=checkbox] {
   // Box.
   & + label:before {
     content: '';
-    margin-right: 10px;
-    margin-top: -6px;
+    margin-right: 13px;
+    margin-top: -4px;
     display: inline-block;
     vertical-align: text-top;
-    width: 24px;
-    height: 24px;
+    width: 19px;
+    height: 19px;
     background: white;
     border: 1px solid #d3d3d3;
+    border-radius: 50%;
   }
 
   // Box hover
@@ -42,11 +52,6 @@ input[type=checkbox] {
   // Box focus
   &:focus + label:before {
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
-  }
-
-  // Box checked
-  &:checked + label:before {
-    //background: #f35429;
   }
 
   // Disabled state label.
@@ -65,18 +70,11 @@ input[type=checkbox] {
   &:checked + label:after {
     content: '';
     position: absolute;
-    left: 8px;
-    top: 7px;
-    background: $text-color;
-    width: 2px;
-    height: 2px;
-    box-shadow:
-            2px 0 0 $text-color,
-            4px 0 0 $text-color,
-            4px -2px 0 $text-color,
-            4px -4px 0 $text-color,
-            4px -6px 0 $text-color,
-            4px -8px 0 $text-color;
-    transform: rotate(45deg);
+    left: 6px;
+    top: 4px;
+    background: $color-main;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
   }
 }

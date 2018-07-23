@@ -1,30 +1,23 @@
-import 'dart:async';
-import 'dart:html';
-
-import 'package:angular/angular.dart';
-import 'package:angular_forms/angular_forms.dart';
-
-import '../services/uid_service.dart';
-
-//    (change)="onChange(value)"
+part of ui;
 
 @Component(
-  selector: 'custom-radio',
-  styleUrls: ['custom_radio_component.css'],
+  selector: 'ui-radio',
+  styleUrls: ['radio/radio_component.css'],
   template: '''
   <input 
     type="radio"
     [id]="radioId"
     [value]="value"
     [checked]="radioValue==value"
+    (change)="onChange(value)"
+    [disabled]="disabled"
   >
   <label [attr.for]="radioId">
     <ng-content></ng-content>
   </label>
   ''',
-  directives: [coreDirectives, formDirectives]
 )
-class CustomRadioComponent implements ControlValueAccessor<String>, OnInit {
+class RadioComponent implements ControlValueAccessor<String>, OnInit {
   String radioValue;
 
   final UidService _uid;
@@ -35,7 +28,7 @@ class CustomRadioComponent implements ControlValueAccessor<String>, OnInit {
   @Input()
   String value;
 
-  CustomRadioComponent(NgControl control, this._uid) {
+  RadioComponent(NgControl control, this._uid) {
     control.valueAccessor = this;
   }
 
