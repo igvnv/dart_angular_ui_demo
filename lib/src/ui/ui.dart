@@ -6,10 +6,10 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 
-import '../services/uid_service.dart';
+import 'uid_service.dart';
 
 part 'button/button_component.dart';
-part 'checkbox_component.dart';
+part 'checkbox/checkbox_component.dart';
 part 'date/date_component.dart';
 part 'radio/radio_component.dart';
 part 'range/range_component.dart';

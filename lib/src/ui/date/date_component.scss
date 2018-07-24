@@ -36,8 +36,8 @@
   white-space: nowrap;
 
   &.raised {
-    font-size: 11px;
-    top: 0;
+    font-size: 10px;
+    top: 1px;
   }
 
   &:focus {
@@ -52,8 +52,8 @@
   font-family: $font-general;
   font-size: 15px;
   height: 50px;
-  line-height: 54px;
   letter-spacing: 1.5px;
+  line-height: 54px;
   text-indent: 16px;
   text-transform: uppercase;
   width: 100%;
@@ -63,7 +63,8 @@
   }
 
   &:after {
-    background-image: url('imgs/ico-date-input.png');
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz4NCjxzdmcgd2lkdGg9IjQuMjExOG1tIiBoZWlnaHQ9IjQuMjExNm1tIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaW1hZ2UtcmVuZGVyaW5nPSJvcHRpbWl6ZVF1YWxpdHkiIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB2aWV3Qm94PSIwIDAgMC4yMTA2NCAwLjIxMDYzIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICA8cGF0aCBkPSJtMCAwaDAuMDM1NDUzdjAuMDM1NDUzaC0wLjAzNTQ1M3YtMC4wMzU0NTN6bTAgMC4xNzUxOGgwLjAzNTQ1M3YwLjAzNTQ1M2gtMC4wMzU0NTN2LTAuMDM1NDUzem0wLjE3NTE5IDBoMC4wMzU0NTN2MC4wMzU0NTNoLTAuMDM1NDUzdi0wLjAzNTQ1M3ptLTAuMDg3NTk2IDBoMC4wMzU0NTN2MC4wMzU0NTNoLTAuMDM1NDUzdi0wLjAzNTQ1M3ptLTAuMDg3NTkxLTAuMDg3NTg2aDAuMDM1NDUzdjAuMDM1NDUzaC0wLjAzNTQ1M3YtMC4wMzU0NTN6bTAuMTc1MTkgMGgwLjAzNTQ1M3YwLjAzNTQ1M2gtMC4wMzU0NTN2LTAuMDM1NDUzem0tMC4wODc1OTYgMGgwLjAzNTQ1M3YwLjAzNTQ1M2gtMC4wMzU0NTN2LTAuMDM1NDUzem0wLjA4NzU5Ni0wLjA4NzU5MWgwLjAzNTQ1M3YwLjAzNTQ1M2gtMC4wMzU0NTN2LTAuMDM1NDUzem0tMC4wODc1OTYgMGgwLjAzNTQ1M3YwLjAzNTQ1M2gtMC4wMzU0NTN2LTAuMDM1NDUzeiIgZmlsbD0iIzNDM0MzQyIvPg0KPC9zdmc+);
+    background-size: contain;
     content: '';
     height: 12px;
     position: absolute;
@@ -205,14 +206,14 @@
 
 .yearsList {
   font-size: 12px;
-  text-align: center;
   overflow: hidden;
+  text-align: center;
 
   li {
     cursor: pointer;
-    width: 57px;
+    float: left;
     height: 57px;
     line-height: 57px;
-    float: left;
+    width: 57px;
   }
 }

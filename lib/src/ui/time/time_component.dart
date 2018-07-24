@@ -56,8 +56,10 @@ part of ui;
 class TimeComponent implements ControlValueAccessor<DateTime>, OnDestroy {
   DateTime timeValue;
 
-  List<String> suggestHours = ['1', '2','3', '4', '5', '6', '7', '8',
-                               '9', '10', '11'];
+  /// Список, который будет отображаться в подсказке выбора часа.
+  List<String> suggestHours =
+                  ['0', '1', '2','3', '4', '5', '6', '7', '8', '9', '10', '11'];
+  /// Список, который будет отображаться в подсказке выбора минут.
   List<String> suggestMinutes = ['00', '15', '30', '45'];
 
   int _hours;
@@ -80,13 +82,14 @@ class TimeComponent implements ControlValueAccessor<DateTime>, OnDestroy {
     else if (_minutes<0) _minutes = 0;
   }
 
+  /// Временной промежуток (AM, PM).
   String timePeriod;
 
+  /// Ссылка на HTML элемент инпута выбора часа.
   @ViewChild('hoursElement')
   InputComponent hoursElement;
 
-  final UidService _uid;
-
+  /// Ссылка на HTML элемент инпута.
   final HtmlElement _el;
 
   @Input()
@@ -109,19 +112,22 @@ class TimeComponent implements ControlValueAccessor<DateTime>, OnDestroy {
   bool required = false;
 
   @Input()
-  String value;
-
-  @Input()
   String invalidMessage = 'Invalid field';
 
-  TimeComponent(NgControl control, this._uid, this._el) {
+  @Output('checkedChange')
+  Stream get onChecked => _onChecked.stream;
+  final _onChecked = new StreamController.broadcast();
+
+  TimeComponent(NgControl control, this._el) {
     control.valueAccessor = this;
   }
 
   bool isValid = true;
 
+  /// Открыта ли на данный момент форма ввода времни.
   bool formOpened = false;
 
+  /// Открывает/закрывает форму ввода времени.
   void toggleForm() {
     if (formOpened) {
       hideForm();
@@ -132,9 +138,10 @@ class TimeComponent implements ControlValueAccessor<DateTime>, OnDestroy {
   }
 
   // При раскрытом списке вариантов включаем обработку кликов для скрытия списка
-  // при клике вне компонента
+  // при клике вне компонента.
   StreamSubscription<MouseEvent> _clickOutsideListener;
 
+  /// Открывает форму ввода времени.
   void showForm() {
     if (_disabled) return;
 
@@ -148,6 +155,7 @@ class TimeComponent implements ControlValueAccessor<DateTime>, OnDestroy {
     });
   }
 
+  /// Скрывает форму ввода времени.
   void hideForm() {
     formOpened = false;
     _clickOutsideListener?.cancel();
@@ -157,11 +165,8 @@ class TimeComponent implements ControlValueAccessor<DateTime>, OnDestroy {
     _clickOutsideListener?.cancel();
   }
 
-  @Output('checkedChange')
-  Stream get onChecked => _onChecked.stream;
-  final _onChecked = new StreamController.broadcast();
-
-  void onChange (DateTime newValue) {
+  /// Устанавливает значение компонента.
+  void setValue (DateTime newValue) {
     timeValue = newValue;
     _onChecked.add(timeValue);
     _validate();
@@ -173,6 +178,7 @@ class TimeComponent implements ControlValueAccessor<DateTime>, OnDestroy {
     timePeriod = timeValue.hour < 12 ? 'am' : 'pm';
   }
 
+  /// Устанавливает время из формы ввода времени.
   void saveChanges() {
     DateTime now = DateTime.now();
     DateTime newDateTime = DateTime(
@@ -183,7 +189,7 @@ class TimeComponent implements ControlValueAccessor<DateTime>, OnDestroy {
       _minutes
     );
 
-    onChange(newDateTime);
+    setValue(newDateTime);
     hideForm();
   }
 
@@ -202,7 +208,7 @@ class TimeComponent implements ControlValueAccessor<DateTime>, OnDestroy {
   @override
   void writeValue(DateTime newValue) {
     if (newValue == null) return;
-    onChange(newValue);
+    setValue(newValue);
   }
 
   @override

@@ -1,8 +1,8 @@
 @import "../config";
 
 :host {
-  position: relative;
   display: block;
+  position: relative;
   width: 271px;
 }
 
@@ -11,11 +11,11 @@ button {
   border: none;
   color: #ffffff;
   cursor: pointer;
-  height: 35px;
   display: inline-block;
   flex-shrink: 0;
   font-size: 13px;
   font-weight: 400;
+  height: 35px;
   letter-spacing: 1.1px;
   padding: 0 10px;
   text-align: center;
@@ -67,8 +67,8 @@ button {
   white-space: nowrap;
 
   &.raised {
-    font-size: 11px;
-    top: 0;
+    font-size: 10px;
+    top: 1px;
   }
 
   &:focus {
@@ -83,8 +83,8 @@ button {
   font-family: $font-general;
   font-size: 15px;
   height: 50px;
-  line-height: 54px;
   letter-spacing: 1.5px;
+  line-height: 54px;
   text-indent: 16px;
   text-transform: uppercase;
   width: 100%;
@@ -94,27 +94,28 @@ button {
   }
 
   &:after {
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz4NCjxzdmcgd2lkdGg9IjUuMTcwNG1tIiBoZWlnaHQ9IjUuMTcwNG1tIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaW1hZ2UtcmVuZGVyaW5nPSJvcHRpbWl6ZVF1YWxpdHkiIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB2aWV3Qm94PSIwIDAgMC4zNzE2NjcgMC4zNzE2NjciIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogIDxwYXRoIGQ9Im0wLjE4NTgzIDBoNS4wMzE4ZS01djcuMTg4NGUtNWMwLjA1MTI3NSAxLjQzNzdlLTUgMC4wOTc3MTkgMC4wMjA4MTggMC4xMzEzMyAwLjA1NDQxNmwzLjU5NDJlLTUgLTMuNTk0MmUtNWMwLjAzMzU0OCAwLjAzMzU0OCAwLjA1NDMxNSAwLjA3OTk3IDAuMDU0MzQ0IDAuMTMxMjdoNy4xODg0ZS01djEuMDc4MmUtNCA1LjAzMThlLTVoLTcuMTg4NGUtNWMtMS40Mzc3ZS01IDAuMDUxMjk2LTAuMDIwODMyIDAuMDk3NzU0LTAuMDU0NDUyIDAuMTMxMzctMC4wMzM1NTUgMC4wMzM1NDgtMC4wNzk5NTYgMC4wNTQzMTUtMC4xMzEyIDAuMDU0MzQ0djcuMTg4NGUtNWgtMS4wNzgyZS00IC01LjAzMThlLTV2LTcuMTg4NGUtNWMtMC4wNTEyOTYtMS40Mzc3ZS01IC0wLjA5Nzc1NC0wLjAyMDgzMi0wLjEzMTM3LTAuMDU0NDUyLTAuMDMzNTQ4LTAuMDMzNTU1LTAuMDU0MzE1LTAuMDc5OTU2LTAuMDU0MzQ0LTAuMTMxMmgtNy4xODg0ZS01di0xLjA3ODJlLTQgLTUuMDMxOGUtNWg3LjE4ODRlLTVjMS40Mzc3ZS01IC0wLjA1MTI3NSAwLjAyMDgxOC0wLjA5NzcxOSAwLjA1NDQxNi0wLjEzMTMzbC0zLjU5NDJlLTUgLTMuNTk0MmUtNWMwLjAzMzU0OC0wLjAzMzU0OCAwLjA3OTk3LTAuMDU0MzE1IDAuMTMxMjctMC4wNTQzNDR2LTcuMTg4NGUtNWgxLjA3ODJlLTR6bTAuMDcwOTI4IDAuMjUwNDVjMC4wMDcyMDI3IDAuMDA2Nzc4NiAwLjAwNzU0NzggMC4wMTgxMzYgNy42OTE1ZS00IDAuMDI1MzM5LTAuMDA2Nzc4NiAwLjAwNzIwMjctMC4wMTgxMzYgMC4wMDc1NDc4LTAuMDI1MzM5IDcuNjkxNWUtNGwtMC4wNjEzOTYtMC4wNTc1MDdjLTAuMDAzNzQ1MS0wLjAwMzUyOTUtMC4wMDU2MjEzLTAuMDA4MjgxLTAuMDA1NjIxMy0wLjAxMzA1NGgtNi40Njk1ZS01di0wLjExNjdjMC0wLjAwOTkxOTkgMC4wMDgwNTEtMC4wMTc5NzEgMC4wMTc5NzEtMC4wMTc5NzFzMC4wMTc5NzEgMC4wMDgwNTEgMC4wMTc5NzEgMC4wMTc5NzF2MC4xMDg5OGwwLjA1NTcxIDAuMDUyMTh6bS0wLjA3MDg3Ny0wLjIxNDU4djcuMTg4NGUtNWgtNS4wMzE4ZS01IC0xLjA3ODJlLTR2LTcuMTg4NGUtNWMtMC4wNDEyNzYgMi4xNTY1ZS01IC0wLjA3ODcyIDAuMDE2ODI4LTAuMTA1ODYgMC4wNDM5NjRoLTcuMTg4NGUtNWMtMC4wMjcxMjIgMC4wMjcxMTQtMC4wNDM5MjEgMC4wNjQ1ODctMC4wNDM5MjggMC4xMDU5NWg3LjE4ODRlLTV2NS4wMzE4ZS01IDEuMDc4MmUtNGgtNy4xODg0ZS01YzIuMTU2NWUtNSAwLjA0MTMxMiAwLjAxNjgyMSAwLjA3ODc3NyAwLjA0Mzk2NCAwLjEwNTkzIDAuMDI3MTE0IDAuMDI3MTIyIDAuMDY0NTg3IDAuMDQzOTIxIDAuMTA1OTUgMC4wNDM5Mjh2LTcuMTg4NGUtNWg1LjAzMThlLTUgMS4wNzgyZS00djcuMTg4NGUtNWMwLjA0MTMxMi0yLjE1NjVlLTUgMC4wNzg3NzctMC4wMTY4MjEgMC4xMDU5My0wLjA0Mzk2NCAwLjAyNzEyMi0wLjAyNzExNCAwLjA0MzkyMS0wLjA2NDU4NyAwLjA0MzkyOC0wLjEwNTk1aC03LjE4ODRlLTV2LTUuMDMxOGUtNSAtMS4wNzgyZS00aDcuMTg4NGUtNWMtMi4xNTY1ZS01IC0wLjA0MTI3Ni0wLjAxNjgyOC0wLjA3ODcyLTAuMDQzOTY0LTAuMTA1ODZ2LTcuMTg4NGUtNWMtMC4wMjcxMTQtMC4wMjcxMjItMC4wNjQ1ODctMC4wNDM5MjEtMC4xMDU5NS0wLjA0MzkyOHoiIGZpbGw9IiMzQzNDM0MiIGZpbGwtcnVsZT0ibm9uemVybyIvPg0KPC9zdmc+);
+    background-size: contain;
     content: '';
-    position: absolute;
-    width: 14px;
     height: 14px;
+    position: absolute;
     right: 14px;
     top: 19px;
-    background-image: url('imgs/ico-time-input.png');
+    width: 14px;
   }
 }
 
 .timeSelector {
   align-items: flex-end;
-  position: absolute;
-  top: 50px;
   background: #ffffff;
   border: 1px solid #e7e7e7;
-  padding: 5px 15px 16px;
-  width: 100%;
-  left: 0;
   display: none;
   justify-content: space-between;
+  left: 0;
+  position: absolute;
+  padding: 5px 15px 16px;
+  top: 50px;
+  width: 100%;
   z-index: 100;
 
   &.open {
@@ -134,10 +135,10 @@ button {
     &:first-child {
       position: relative;
       &:after {
+        content: ':';
         position: absolute;
         right: -10px;
         top: 15px;
-        content: ':';
       }
     }
   }

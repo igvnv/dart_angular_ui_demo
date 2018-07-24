@@ -2,46 +2,46 @@
 
 :host {
   display: block;
-  position: relative;
-  min-height: 25px;
   margin-top: 8px;
+  min-height: 25px;
+  position: relative;
 }
 
 input[type=radio] {
-  position: absolute;
   opacity: 0;
+  position: absolute;
 
   & + label {
-    position: relative;
+    color: $color-main;
     cursor: pointer;
+    display: block;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0;
     margin: 0;
     padding: 2px 0 0;
-    color: $color-main;
-    font-weight: 300;
-    font-size: 13px;
-    display: block;
+    position: relative;
     text-transform: uppercase;
-    letter-spacing: 0;
 
     small {
-      text-indent: 0;
       display: block;
       margin-top: 6px;
+      text-indent: 0;
     }
   }
 
   // Box.
   & + label:before {
     content: '';
-    margin-right: 13px;
-    margin-top: -4px;
-    display: inline-block;
-    vertical-align: text-top;
-    width: 19px;
-    height: 19px;
     background: white;
     border: 1px solid #d3d3d3;
     border-radius: 50%;
+    display: inline-block;
+    height: 19px;
+    margin-right: 13px;
+    margin-top: -4px;
+    vertical-align: text-top;
+    width: 19px;
   }
 
   // Box hover
@@ -68,13 +68,13 @@ input[type=radio] {
 
   // Checkmark. Could be replaced with an image
   &:checked + label:after {
-    content: '';
-    position: absolute;
-    left: 6px;
-    top: 4px;
     background: $color-main;
-    width: 9px;
-    height: 9px;
     border-radius: 50%;
+    content: '';
+    height: 9px;
+    left: 6px;
+    position: absolute;
+    top: 4px;
+    width: 9px;
   }
 }

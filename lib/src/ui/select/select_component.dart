@@ -1,46 +1,49 @@
 part of ui;
 
 @Component(
-    selector: 'ui-select',
-    styleUrls: ['select/select_component.css'],
-    template: '''
-      <div 
-        class="select"
-        [class.error]="!isValid"
-        [class.disabled]="disabled"
-        [class.open]="listOpened"
+  selector: 'ui-select',
+  styleUrls: ['select/select_component.css'],
+  template: '''
+    <div 
+      class="select"
+      [class.error]="!isValid"
+      [class.disabled]="disabled"
+      [class.open]="listOpened"
+    >
+      <span 
+        class="label"
+        [class.raised]="selectValue!=null && selectValue.isNotEmpty"
+        (focus)="showOptions()"
+        [tabindex]="tabindex"
       >
-        <span 
-          class="label"
-          [class.raised]="selectValue!=null && selectValue.isNotEmpty"
-          (focus)="showOptions()"
-          [tabindex]="tabindex"
-        >
-          <ng-content></ng-content> <span *ngIf="required">*</span>
-        </span>
-        <span 
-          class="currentValue"
-          (click)="toggleOptions()"
-        >{{options[selectValue]}}</span>
-        <ul>
-          <li
-            *ngFor="let key of options.keys"
-            (click)="onChange(key);hideOptions()"
-            [class.active]="key==selectValue"
-          >{{options[key]}}</li>
-        </ul>
-      </div>
-      <span class="error" *ngIf="!isValid">{{invalidMessage}}</span>
-    ''',
-    directives: [coreDirectives, formDirectives]
+        <ng-content></ng-content> <span *ngIf="required">*</span>
+      </span>
+      <span 
+        class="currentValue"
+        (click)="toggleOptions()"
+      >{{options[selectValue]}}</span>
+      <ul>
+        <li
+          *ngFor="let key of options.keys"
+          (click)="setValue(key);hideOptions()"
+          [class.active]="key==selectValue"
+        >{{options[key]}}</li>
+      </ul>
+    </div>
+    <span class="error" *ngIf="!isValid">{{invalidMessage}}</span>
+  ''',
+  directives: [coreDirectives, formDirectives],
+  providers: [ClassProvider(UidService)]
 )
 class SelectComponent implements ControlValueAccessor<String>, OnInit, OnDestroy {
   String selectValue;
 
   final UidService _uid;
 
+  /// Ссылка на HTML элемент текущего компонента.
   final HtmlElement _el;
 
+  /// Раскрыт ли на данный момент список доступных значений.
   bool listOpened = false;
 
   /// Управляет последовательностю перехода между элементами при нажатии на
@@ -61,15 +64,16 @@ class SelectComponent implements ControlValueAccessor<String>, OnInit, OnDestroy
 
   get disabled => _disabled;
 
+  /// Является ли заполнение компонента обязательным.
   @Input()
   bool required = false;
 
-  @Input()
-  String value;
-
+  /// Спиоск доступных значений для выпадающего списка.
+  /// Пример: {'one': 'First Line', 'two': 'Second Line'}
   @Input()
   Map<dynamic, String> options = {};
 
+  /// Сообщение об ошибке
   @Input()
   String invalidMessage = 'Invalid field';
 
@@ -87,10 +91,13 @@ class SelectComponent implements ControlValueAccessor<String>, OnInit, OnDestroy
     }
   }
 
+  /// Обработчик изменения значения компонента
+  /// (необходимо для работы с [(ngModel)]).
   @Output('checkedChange')
   Stream get onChecked => _onChecked.stream;
   final _onChecked = new StreamController.broadcast();
 
+  /// Скрывает/отображает выпадающий список.
   void toggleOptions() {
     if (listOpened) {
       hideOptions();
@@ -100,13 +107,14 @@ class SelectComponent implements ControlValueAccessor<String>, OnInit, OnDestroy
     }
   }
 
-  // При раскрытом списке вариантов включаем обработку кликов для скрытия списка
-  // при клике вне компонента
+  /// При раскрытом списке вариантов включаем обработку кликов для скрытия списка
+  /// при клике вне компонента.
   StreamSubscription<MouseEvent> _clickOutsideListener;
 
-  // При раскрытом списке вариантов включаем обработку нажатий на клавиатуру
+  /// При раскрытом списке вариантов включаем обработку нажатий на клавиатуру.
   StreamSubscription<KeyboardEvent> _keyDownListener;
 
+  /// Отображает выпадающий список с вариантами выбора.
   void showOptions() {
     if (_disabled) return;
 
@@ -121,7 +129,7 @@ class SelectComponent implements ControlValueAccessor<String>, OnInit, OnDestroy
     _addKeyDownListener();
   }
 
-  /// Добавляем обработчки нажатия клавиш для управления выпадающим списком
+  /// Добавляет обработчки нажатия клавиш для управления выпадающим списком
   /// с клавиатуры:
   ///
   /// * при нажатии на Esc, Enter и Space скрываем выпадающий список
@@ -152,20 +160,21 @@ class SelectComponent implements ControlValueAccessor<String>, OnInit, OnDestroy
     });
   }
 
+  /// Выбирает предыдущий элемент в списке выбора.
   void _selectPreviousOption(KeyboardEvent event) {
     // Защита от пролистывания страницы вверх
     event.stopPropagation();
     event.preventDefault();
 
     if (selectValue==null || selectValue.isEmpty) {
-      onChange(options.keys.last);
+      setValue(options.keys.last);
     }
     else {
       dynamic previousKey = null;
 
       for (dynamic key in options.keys) {
         if (key==selectValue && previousKey!=null) {
-          onChange(previousKey);
+          setValue(previousKey);
         }
 
         previousKey = key;
@@ -173,20 +182,21 @@ class SelectComponent implements ControlValueAccessor<String>, OnInit, OnDestroy
     }
   }
 
+  /// Выбирает следующий элемент в списке выбора.
   void _selectNextOption(KeyboardEvent event) {
     // Защита от пролистывания страницы вниз
     event.stopPropagation();
     event.preventDefault();
 
     if (selectValue==null || selectValue.isEmpty) {
-      onChange(options.keys.first);
+      setValue(options.keys.first);
     }
     else {
       bool previousSelected = false;
 
       for (dynamic key in options.keys) {
         if (previousSelected) {
-          onChange(key);
+          setValue(key);
           previousSelected = false;
         }
         else if (key==selectValue) {
@@ -196,6 +206,7 @@ class SelectComponent implements ControlValueAccessor<String>, OnInit, OnDestroy
     }
   }
 
+  /// Прячет список выбора.
   void hideOptions([KeyboardEvent event]) {
     // Защита от пролистывания страницы вниз
     event?.stopPropagation();
@@ -211,7 +222,8 @@ class SelectComponent implements ControlValueAccessor<String>, OnInit, OnDestroy
     _keyDownListener?.cancel();
   }
 
-  void onChange (String newValue) {
+  /// Устанавливает значение компонента
+  void setValue (String newValue) {
     selectValue = newValue;
     _onChecked.add(selectValue);
     _validate();
@@ -232,7 +244,7 @@ class SelectComponent implements ControlValueAccessor<String>, OnInit, OnDestroy
   @override
   void writeValue(String newValue) {
     if (newValue == null) return;
-    onChange(newValue);
+    setValue(newValue);
   }
 
   @override

@@ -2,7 +2,7 @@ part of ui;
 
 @Component(
   selector: 'ui-checkbox',
-  styleUrls: ['checkbox_component.css'],
+  styleUrls: ['checkbox/checkbox_component.css'],
   template: '''
   <input 
     type="checkbox"
@@ -14,7 +14,8 @@ part of ui;
   <label [attr.for]="checkboxId">
     <ng-content></ng-content>
   </label>
-  '''
+  ''',
+  providers: [ClassProvider(UidService)]
 )
 class CheckboxComponent implements ControlValueAccessor<bool>, OnInit {
   bool checkboxValue;
@@ -23,6 +24,10 @@ class CheckboxComponent implements ControlValueAccessor<bool>, OnInit {
 
   @Input()
   bool disabled;
+
+  @Output('checkedChange')
+  Stream get onChecked => _onChecked.stream;
+  final _onChecked = new StreamController.broadcast();
 
   CheckboxComponent(NgControl control, this._uid) {
     control.valueAccessor = this;
@@ -36,16 +41,13 @@ class CheckboxComponent implements ControlValueAccessor<bool>, OnInit {
     }
   }
 
+  /// Переключает состояние чекбокса (выбрано/не выбрано).
   void toggle () {
-    checkboxValue = !checkboxValue;
-    _onChecked.add(checkboxValue);
+    setValue(!checkboxValue);
   }
 
-  @Output('checkedChange')
-  Stream get onChecked => _onChecked.stream;
-  final _onChecked = new StreamController.broadcast();
-
-  void onChange (bool value) {
+  /// Устанавливает значение компонента.
+  void setValue (bool value) {
     checkboxValue = value;
     _onChecked.add(checkboxValue);
   }
@@ -53,7 +55,7 @@ class CheckboxComponent implements ControlValueAccessor<bool>, OnInit {
   @override
   void writeValue(bool isChecked) {
     if (isChecked == null) return;
-    onChange(isChecked);
+    setValue(isChecked);
   }
 
   @override

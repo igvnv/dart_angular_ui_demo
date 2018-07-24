@@ -1,8 +1,9 @@
 import 'package:angular/angular.dart';
 
+int _num = 0;
+
 @Injectable()
 class UidService {
-  int _num = 0;
 
   String generate() {
     return (++_num).toString();

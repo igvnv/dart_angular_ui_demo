@@ -3,39 +3,39 @@
   [class.error]="!isValid"
   [class.disabled]="disabled"
 >
-      <span
-        class="label"
-        [class.raised]="timeValue!=null"
-        [tabindex]="tabindex"
-        (focus)="showCalendar()"
-      >
-        <ng-content></ng-content> <span *ngIf="required">*</span>
-      </span>
+  <span
+    class="label"
+    [class.raised]="inputValue!=null"
+    [tabindex]="tabindex"
+    (focus)="showCalendar()"
+  >
+    <ng-content></ng-content> <span *ngIf="required">*</span>
+  </span>
   <span
     class="currentValue"
-    (click)="toggleForm()"
-  >{{timeValue | date:'MMMM dd, yyyy'}}</span>
+    (click)="toggleCalendar()"
+  >{{inputValue | date:'MMMM dd, yyyy'}}</span>
 </div>
 
 <span class="error" *ngIf="!isValid">{{invalidMessage}}</span>
 
-<div class="dateSelector" *ngIf="formOpened.isNotEmpty">
-  <div *ngIf="formOpened=='calendar'">
+<div class="dateSelector" *ngIf="displayedView.isNotEmpty">
+  <div *ngIf="displayedView=='calendar'">
     <div class="changeMonth">
       <span class="previous" (click)="showPreviousMonth()"></span>
-      <span (click)="calendarMode('months')">{{displayedMonth | date:'yyyy / MMMM'}}</span>
+      <span (click)="viewMode('months')">{{displayedDate | date:'yyyy / MMMM'}}</span>
       <span class="next" (click)="showNextMonth()"></span>
     </div>
 
     <div class="month">
       <ul class="dayNames">
+        <li>Su</li>
         <li>Mo</li>
         <li>Tu</li>
         <li>We</li>
         <li>Th</li>
         <li>Fr</li>
         <li>Sa</li>
-        <li>Su</li>
       </ul>
 
       <ul>
@@ -48,7 +48,7 @@
           class="displayedMonth"
           [class.currentDate]="isCurrentDate(day)"
           [class.selectedDate]="isSelectedDate(day)"
-          (click)="selectDay(day)"
+          (click)="setDay(day)"
         >{{day}}</li>
         <li
           *ngFor="let day of nextMonthDays"
@@ -58,29 +58,29 @@
     </div>
   </div>
 
-  <div *ngIf="formOpened=='months'">
+  <div *ngIf="displayedView=='months'">
     <div class="changeMonth">
-      <span class="previous" (click)="displayYear(displayedMonth.year - 1)"></span>
-      <span (click)="calendarMode('years')">{{displayedMonth | date:'yyyy'}}</span>
-      <span class="next" (click)="displayYear(displayedMonth.year + 1)"></span>
+      <span class="previous" (click)="displayYear(displayedDate.year - 1)"></span>
+      <span (click)="viewMode('years')">{{displayedDate | date:'yyyy'}}</span>
+      <span class="next" (click)="displayYear(displayedDate.year + 1)"></span>
     </div>
 
     <div class="monthsList">
       <ul>
         <li
           *ngFor="let monthName of monthsNamesList;let i=index"
-          [class.currentDate]="displayedMonth.year==now.year && now.month==i+1"
-          [class.selectedDate]="displayedMonth.year==timeValue.year && timeValue.month==i+1"
-          (click)="showMonthByNumber(i+1, displayedMonth.year)"
+          [class.currentDate]="displayedDate.year==now.year && now.month==i+1"
+          [class.selectedDate]="displayedDate.year==inputValue.year && inputValue.month==i+1"
+          (click)="showMonthByNumber(i+1, displayedDate.year)"
         >{{monthName}}</li>
       </ul>
     </div>
   </div>
 
-  <div *ngIf="formOpened=='years'">
+  <div *ngIf="displayedView=='years'">
     <div class="changeMonth">
       <span class="previous" (click)="olderYearsList()"></span>
-      <span (click)="calendarMode('months')">{{yearsList.first}}-{{yearsList.last}}</span>
+      <span (click)="viewMode('months')">{{yearsList.first}}-{{yearsList.last}}</span>
       <span class="next" (click)="newerYearsList()"></span>
     </div>
 
@@ -89,8 +89,8 @@
         <li
           *ngFor="let year of yearsList"
           [class.currentDate]="now.year==year"
-          [class.selectedDate]="timeValue.year==year"
-          (click)="displayYear(year);calendarMode('months')"
+          [class.selectedDate]="inputValue.year==year"
+          (click)="displayYear(year);viewMode('months')"
         >{{year}}</li>
       </ul>
     </div>

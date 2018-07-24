@@ -9,13 +9,14 @@ part of ui;
     [id]="radioId"
     [value]="value"
     [checked]="radioValue==value"
-    (change)="onChange(value)"
+    (change)="setValue(value)"
     [disabled]="disabled"
   >
   <label [attr.for]="radioId">
     <ng-content></ng-content>
   </label>
   ''',
+  providers: [ClassProvider(UidService)]
 )
 class RadioComponent implements ControlValueAccessor<String>, OnInit {
   String radioValue;
@@ -44,7 +45,8 @@ class RadioComponent implements ControlValueAccessor<String>, OnInit {
   Stream get onChecked => _onChecked.stream;
   final _onChecked = new StreamController.broadcast();
 
-  void onChange (String newValue) {
+  /// Устанавливает значение компонента.
+  void setValue (String newValue) {
     radioValue = newValue;
     _onChecked.add(radioValue);
   }
@@ -52,7 +54,7 @@ class RadioComponent implements ControlValueAccessor<String>, OnInit {
   @override
   void writeValue(String newValue) {
     if (newValue == null) return;
-    onChange(newValue);
+    setValue(newValue);
   }
 
   @override

@@ -3,7 +3,6 @@
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 
-import 'src/services/uid_service.dart';
 import 'src/ui/ui.dart';
 
 @Component(
@@ -15,7 +14,6 @@ import 'src/ui/ui.dart';
     formDirectives,
     uiDirectives,
   ],
-  providers: [ClassProvider(UidService)]
 )
 class AppComponent implements OnInit {
   bool checkboxValue = true;
@@ -34,7 +32,7 @@ class AppComponent implements OnInit {
 
   bool disabled = false;
 
-  RangeValue range;
+  RangeValue range = RangeValue(10, 50);
 
   void ngOnInit() {
 //    Future.delayed(const Duration(seconds: 3), () => disabled = true);
